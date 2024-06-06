@@ -197,6 +197,7 @@ class NfcManagerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   private fun handleIsoDepTransceive(call: MethodCall, result: Result) {
     tagHandler(call, result, { IsoDep.get(it) }) {
+      it.setTimeout(5000);
       val data = call.argument<ByteArray>("data")!!
       result.success(it.transceive(data))
     }
